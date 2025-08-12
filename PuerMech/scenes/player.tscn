@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://0iijhq4bvave"]
+
+[ext_resource type="Texture2D" uid="uid://dxe1en8g5lm4k" path="res://art/mech.png" id="1_tw2hx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_65m6u"]
+size = Vector2(20, 28.9535)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yb6hn"]
+size = Vector2(836, 58)
+
+[node name="Player" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_tw2hx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+scale = Vector2(10.84, 17.2)
+shape = SubResource("RectangleShape2D_65m6u")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -72)
+shape = SubResource("RectangleShape2D_yb6hn")

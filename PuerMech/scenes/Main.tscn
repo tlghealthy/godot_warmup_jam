@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3 uid="uid://cyxpqx6bf0yhy"]
+
+[ext_resource type="PackedScene" uid="uid://0iijhq4bvave" path="res://scenes/player.tscn" id="1_jlpcl"]
+[ext_resource type="Script" path="res://scenes/player.gd" id="2_f3kfu"]
+[ext_resource type="PackedScene" uid="uid://cbos8c6d5fgm0" path="res://scenes/platform.tscn" id="2_pyanv"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_jlpcl")]
+position = Vector2(555, 327)
+scale = Vector2(0.190922, 0.265695)
+script = ExtResource("2_f3kfu")
+
+[node name="Platform" parent="." instance=ExtResource("2_pyanv")]
+position = Vector2(-12, 788)
+scale = Vector2(0.848496, 0.591404)
+
+[node name="Platform9" parent="." instance=ExtResource("2_pyanv")]
+position = Vector2(-80, 651)
+scale = Vector2(0.848496, 0.591404)
+
+[node name="Platform10" parent="." instance=ExtResource("2_pyanv")]
+position = Vector2(348, 567)
+scale = Vector2(0.848496, 0.591404)
+
+[node name="Platform4" parent="." instance=ExtResource("2_pyanv")]
+position = Vector2(51, 925)
+scale = Vector2(0.848496, 0.591404)
+
+[node name="Platform5" parent="." instance=ExtResource("2_pyanv")]
+position = Vector2(1538, 463)
+scale = Vector2(0.848496, 0.591404)
+
+[node name="Platform6" parent="." instance=ExtResource("2_pyanv")]
+position = Vector2(980, 1035)
+scale = Vector2(3.48849, 0.591404)
+
+[node name="Platform8" parent="." instance=ExtResource("2_pyanv")]
+position = Vector2(1234, 730)
+rotation = -0.410686
+scale = Vector2(0.848496, 0.591404)
+
+[node name="Platform7" parent="." instance=ExtResource("2_pyanv")]
+position = Vector2(1756, 1008)
+scale = Vector2(0.848496, 0.591404)
+
+[node name="Platform2" parent="." instance=ExtResource("2_pyanv")]
+position = Vector2(569, 519)
+scale = Vector2(0.848496, 0.591404)
+
+[node name="Platform3" parent="." instance=ExtResource("2_pyanv")]
+position = Vector2(942, 470)
+scale = Vector2(0.848496, 0.591404)

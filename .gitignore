@@ -6,8 +6,11 @@
 .import/
 export.cfg
 export_credentials.cfg
+
+# Godot specific instanciation formats and temp loads
 *.import
 *.uid
+*.png~
 
 # Imported translations (automatically generated from CSV files)
 *.translation

@@ -13,7 +13,7 @@ config_version=5
 config/name="PuerMech"
 run/main_scene="uid://cyxpqx6bf0yhy"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="uid://tg70ysok8gj"
+config/icon="uid://cogdmqgx7bmqp"
 
 [display]
 

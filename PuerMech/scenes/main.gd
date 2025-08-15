@@ -6,10 +6,11 @@ const BASE_RESOLUTION: Vector2 = Vector2(1920, 1080)
 # if false it's web target
 var is_desktop: bool = true
 var is_fullscreen: bool = false
-@onready var ui_root: Control = $UIRoot
+@onready var ui_root: Control = $CanvasLayer/UIRoot
 
 # if false, use room scripts
-var camera_follow = true
+enum CameraFollowType {FOLLOW, PUSH, TRANSITION, ANTICIPATE}
+var CameraType = CameraFollowType.FOLLOW
 
 func _ready():
 	#var is_desktop = (OS.has_feature("pc") or 
@@ -30,8 +31,9 @@ func _ready():
 		await get_tree().process_frame
 		get_viewport().size_changed.connect(_apply_scale)
 		_apply_scale()
-	$Player/Camera2D.make_current()
-	
+	_camera_follow()
+
+
 func _apply_scale():
 	var vp := get_viewport().get_visible_rect().size
 	var s : float = min(vp.x / BASE_RESOLUTION.x, vp.y / BASE_RESOLUTION.y) 
@@ -42,7 +44,15 @@ func _apply_scale():
 	# Scale and center
 	var scaled_size: Vector2 = BASE_RESOLUTION * s
 	ui_root.position = (vp - scaled_size) * 0.5
-	
+
+func _camera_follow():
+	$Player/Camera2D.make_current()
+	$CanvasLayer/UIRoot/LabCameraType.text = "Camera Follow"
+
+func _camera_transition():
+	$ScreenCamera.make_current()
+	$CanvasLayer/UIRoot/LabCameraType.text = "Camera Transition"
+
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("CloseGame"):
 		if is_desktop:
@@ -53,7 +63,12 @@ func _process(delta: float) -> void:
 		is_fullscreen = not is_fullscreen
 		set_borderless_fullscreen(is_fullscreen)
 		
-	$CanvasLayer/UIRoot/YVel.text = "Velocity: " + str(floor(-1*$Player.velocity.y))
+	if Input.is_action_just_pressed("CameraFollow"):
+		_camera_follow()
+	if Input.is_action_just_pressed("CameraTransition"):
+		_camera_transition()
+		
+	$CanvasLayer/UIRoot/LabYVel.text = "Velocity: " + str(floor(-1*$Player.velocity.y))
 	
 func set_borderless_fullscreen(enable: bool):
 	if enable:

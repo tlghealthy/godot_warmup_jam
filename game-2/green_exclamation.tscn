@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://dlcg3s8l8nscy_green"]
+
+[ext_resource type="Texture2D" uid="uid://c8k6ubx75bnn0" path="res://green.png" id="1_green"]
+[ext_resource type="Script" path="res://green_exclamation.gd" id="2_script"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_green1"]
+atlas = ExtResource("1_green")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_green2"]
+atlas = ExtResource("1_green")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_green"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_green1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_green2")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("2_script")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_green")
+animation = &"new_animation"

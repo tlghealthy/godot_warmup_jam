@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://bydx4xlyngcvp"]
+
+[ext_resource type="Texture2D" path="res://blue_exclamation_mark.png" id="1_blue"]
+[ext_resource type="Script" path="res://blue_exclamation.gd" id="2_script"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blue1"]
+atlas = ExtResource("1_blue")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blue2"]
+atlas = ExtResource("1_blue")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_blue"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_blue1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_blue2")
+}],
+"loop": true,
+"name": &"blue_animation",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("2_script")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_blue")
+animation = &"blue_animation"

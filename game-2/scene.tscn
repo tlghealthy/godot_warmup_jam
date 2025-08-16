@@ -1,0 +1,82 @@
+[gd_scene load_steps=7 format=3 uid="uid://btvbvuiql1dt5"]
+
+[ext_resource type="PackedScene" uid="uid://cvs2mad2v474f" path="res://beam.tscn" id="1_ulcgi"]
+[ext_resource type="Texture2D" uid="uid://cb8v4bv4ufyw4" path="res://background.png" id="2_u3cyc"]
+[ext_resource type="Script" uid="uid://d3quodx1fhgyk" path="res://main_scene.gd" id="3_main"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1"]
+font_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_2"]
+font_size = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_3"]
+font_size = 14
+
+[node name="Node2D2" type="Node2D"]
+script = ExtResource("3_main")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(167, 190)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_u3cyc")
+
+[node name="Node2D" parent="." instance=ExtResource("1_ulcgi")]
+position = Vector2(169, 141)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 16.0
+offset_top = 10.0
+offset_right = 145.0
+offset_bottom = 33.0
+text = "Falling Weights!?"
+label_settings = SubResource("LabelSettings_1")
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_left = 225.0
+offset_top = 8.0
+offset_right = 286.0
+offset_bottom = 31.0
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_2")
+
+[node name="HighScoreLabel" type="Label" parent="."]
+offset_left = 224.0
+offset_top = 35.0
+offset_right = 317.0
+offset_bottom = 58.0
+text = "High: 0"
+label_settings = SubResource("LabelSettings_2")
+
+[node name="LevelLabel" type="Label" parent="."]
+offset_left = 16.0
+offset_top = 35.0
+offset_right = 77.0
+offset_bottom = 58.0
+text = "Level: 1"
+label_settings = SubResource("LabelSettings_2")
+
+[node name="LevelTimeLabel" type="Label" parent="."]
+offset_left = 16.0
+offset_top = 60.0
+offset_right = 77.0
+offset_bottom = 83.0
+text = "Time: 30"
+label_settings = SubResource("LabelSettings_2")
+
+[node name="CountdownLabel" type="Label" parent="."]
+visible = false
+offset_left = 135.0
+offset_top = 80.0
+offset_right = 185.0
+offset_bottom = 103.0
+label_settings = SubResource("LabelSettings_3")
+horizontal_alignment = 1
+
+[node name="LevelLabel2" type="Label" parent="."]
+offset_left = 16.0
+offset_top = 84.0
+offset_right = 95.0
+offset_bottom = 107.0
+text = "Controls: i, k, and l"
+label_settings = SubResource("LabelSettings_2")

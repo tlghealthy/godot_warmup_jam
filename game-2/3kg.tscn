@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://3t2nclewgk5w"]
+
+[ext_resource type="Texture2D" uid="uid://d07y4s7ih4ihu" path="res://3kg.png" id="1_3kg"]
+[ext_resource type="Script" uid="uid://bt1duo81mupuy" path="res://weight_checker.gd" id="2_checker"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3kg"]
+size = Vector2(16, 16)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+mass = 0.75
+script = ExtResource("2_checker")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("RectangleShape2D_3kg")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+texture = ExtResource("1_3kg")

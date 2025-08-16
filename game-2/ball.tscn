@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b24mt0b7fdgys"]
+
+[ext_resource type="Texture2D" uid="uid://dswb452caw127" path="res://bolt.png" id="1_x8fbi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x8fbi"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+
+[node name="Bolt" type="Sprite2D" parent="RigidBody2D"]
+texture = ExtResource("1_x8fbi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("CircleShape2D_x8fbi")

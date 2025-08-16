@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://dlcg3s8l8nscy"]
+
+[ext_resource type="Texture2D" uid="uid://c6mfhaqshuljc" path="res://exclamation_mark.png" id="1_0v78r"]
+[ext_resource type="Script" uid="uid://cocqutho6mu20" path="res://red_exclamation.gd" id="2_script"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nk8m2"]
+atlas = ExtResource("1_0v78r")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sk5vp"]
+atlas = ExtResource("1_0v78r")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u0s2j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nk8m2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sk5vp")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("2_script")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_u0s2j")
+animation = &"new_animation"

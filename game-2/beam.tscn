@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvs2mad2v474f"]
+
+[ext_resource type="Texture2D" uid="uid://dn0tyephh2bo0" path="res://beam.png" id="1_i4dc2"]
+[ext_resource type="Texture2D" uid="uid://dswb452caw127" path="res://bolt.png" id="2_l0jbn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l0jbn"]
+size = Vector2(255, 29)
+
+[node name="BeamSystem" type="Node2D"]
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+node_a = NodePath("../BeamBody")
+node_b = NodePath("../Anchor")
+softness = 0.34
+
+[node name="Anchor" type="StaticBody2D" parent="."]
+
+[node name="BeamBody" type="RigidBody2D" parent="."]
+mass = 5.0
+
+[node name="Sprite2D" type="Sprite2D" parent="BeamBody"]
+position = Vector2(0, 6)
+scale = Vector2(4, 4)
+texture = ExtResource("1_i4dc2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BeamBody"]
+shape = SubResource("RectangleShape2D_l0jbn")
+
+[node name="Sprite2D2" type="Sprite2D" parent="BeamBody"]
+texture = ExtResource("2_l0jbn")

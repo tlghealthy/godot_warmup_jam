@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cyxpqx6bf0yhy"]
+[gd_scene load_steps=14 format=3 uid="uid://cyxpqx6bf0yhy"]
 
 [ext_resource type="Script" uid="uid://cd7rfkg71u6rh" path="res://scenes/main.gd" id="1_rarhs"]
 [ext_resource type="PackedScene" uid="uid://cbos8c6d5fgm0" path="res://scenes/platform.tscn" id="2_pyanv"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://53yavly7e3i" path="res://art/tiles.png" id="5_c01mt"]
 [ext_resource type="Script" uid="uid://d3ox81tb0bx4v" path="res://scenes/mech.gd" id="5_vcsgt"]
 [ext_resource type="Script" uid="uid://3n31nfxfwlv1" path="res://scenes/room_extent.gd" id="6_c01mt"]
+[ext_resource type="Script" uid="uid://clkw2nm3h68el" path="res://scenes/exit_to_room_2.gd" id="6_jlsqs"]
+[ext_resource type="Script" uid="uid://dvt8nar6k68jn" path="res://scenes/screen_camera.gd" id="7_nxtc6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vcsgt"]
 texture = ExtResource("5_c01mt")
@@ -34,8 +36,8 @@ tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_vcsgt")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vcsgt"]
-size = Vector2(3.73457, 190.75)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jlsqs"]
+size = Vector2(20, 186)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nxtc6"]
 texture = ExtResource("5_c01mt")
@@ -123,11 +125,6 @@ tile_set = SubResource("TileSet_c01mt")
 format = 2
 layer_0/tile_data = PackedInt32Array(393218, 1, 0, 393219, 65537, 0, 393220, 65537, 0, 393221, 65537, 0, 393222, 131073, 0, 458758, 131073, 2, 458754, 1, 2, 458755, 65537, 2, 458756, 65537, 2, 458757, 65537, 2, 524317, 1, 2, 458781, 1, 1, 393245, 1, 1, 327709, 1, 1, 262173, 1, 1, 196637, 1, 1, 131101, 1, 1, 65565, 1, 1, 29, 1, 1, -65507, 1, 1, -131043, 1, 1, -196579, 1, 1, -262115, 1, 1, -327651, 1, 1, -393187, 1, 1, -458723, 1, 1, -524259, 1, 1, -589795, 1, 0, 786461, 1, 0, 917532, 65537, 0, 917531, 65537, 0, 917530, 65537, 0, 851997, 1, 1, 917533, 65537, 1)
 
-[node name="ExitToRoom2" type="CollisionShape2D" parent="Room1"]
-position = Vector2(1925, 670)
-scale = Vector2(3.24, 1)
-shape = SubResource("RectangleShape2D_vcsgt")
-
 [node name="RoomExtent" type="ColorRect" parent="Room1"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -136,6 +133,14 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.172251, 0.6083, 1, 0.101961)
 script = ExtResource("6_c01mt")
+
+[node name="ExitToRoom2" type="Area2D" parent="Room1"]
+position = Vector2(1919, 675)
+script = ExtResource("6_jlsqs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room1/ExitToRoom2"]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_jlsqs")
 
 [node name="Room2" type="Node2D" parent="."]
 
@@ -184,3 +189,6 @@ text = "CameraType Placeholder"
 
 [node name="ScreenCamera" type="Camera2D" parent="."]
 position = Vector2(960, 540)
+script = ExtResource("7_nxtc6")
+
+[connection signal="body_entered" from="Room1/ExitToRoom2" to="." method="_on_exit_to_room_2_body_entered"]

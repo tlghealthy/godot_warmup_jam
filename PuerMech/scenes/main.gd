@@ -6,11 +6,16 @@ const BASE_RESOLUTION: Vector2 = Vector2(1920, 1080)
 # if false it's web target
 var is_desktop: bool = true
 var is_fullscreen: bool = false
+@export  var current_camera: Camera2D 
 @onready var ui_root: Control = $CanvasLayer/UIRoot
 
-# if false, use room scripts
-enum CameraFollowType {FOLLOW, PUSH, TRANSITION, ANTICIPATE}
-var CameraType = CameraFollowType.FOLLOW
+enum CameraType {FOLLOW, TRANSITION, TRANSITION_SMOOTH}
+var CameraSet = {
+					CameraType.FOLLOW : _camera_follow, 
+					CameraType.TRANSITION : _camera_transition,
+					CameraType.TRANSITION_SMOOTH : _camera_transition_smooth,
+				}
+var CurrentCameraType = CameraType.FOLLOW
 
 func _ready():
 	#var is_desktop = (OS.has_feature("pc") or 
@@ -31,7 +36,7 @@ func _ready():
 		await get_tree().process_frame
 		get_viewport().size_changed.connect(_apply_scale)
 		_apply_scale()
-	_camera_follow()
+	_camera_set(CameraType.FOLLOW)
 
 
 func _apply_scale():
@@ -45,13 +50,48 @@ func _apply_scale():
 	var scaled_size: Vector2 = BASE_RESOLUTION * s
 	ui_root.position = (vp - scaled_size) * 0.5
 
+func _camera_set(type:CameraType):
+	var NewCameraType = CameraType.keys()[type]
+	print("Setting camera to: " + NewCameraType)
+	CameraSet[type].call()
+	$CanvasLayer/UIRoot/LabCameraType.text = NewCameraType
+
+func _camera_cycle():
+	CurrentCameraType = (CurrentCameraType + 1) % CameraType.size() as CameraType
+	var NewCameraType = CameraType.keys()[CurrentCameraType]
+	print("Cycling camera to: " + NewCameraType)
+	CameraSet[CurrentCameraType].call()
+	$CanvasLayer/UIRoot/LabCameraType.text = NewCameraType
+
+func is_cameratype_transition() -> bool:
+	if CurrentCameraType == CameraType.TRANSITION or CurrentCameraType == CameraType.TRANSITION_SMOOTH:
+		return true
+	else:
+		return false
+
 func _camera_follow():
-	$Player/Camera2D.make_current()
-	$CanvasLayer/UIRoot/LabCameraType.text = "Camera Follow"
+	current_camera = $Player/Camera2D
+	current_camera.make_current()
 
 func _camera_transition():
-	$ScreenCamera.make_current()
-	$CanvasLayer/UIRoot/LabCameraType.text = "Camera Transition"
+	current_camera = $ScreenCamera
+	current_camera.make_current()
+	
+func _camera_transition_smooth():
+	current_camera = $ScreenCamera
+	current_camera.make_current()
+
+func _move_camera_right():
+	if CurrentCameraType == CameraType.TRANSITION_SMOOTH:
+		current_camera.slide_camera_right()
+	elif CurrentCameraType == CameraType.TRANSITION:
+		current_camera.move_camera_right()
+
+func _move_camera_left():
+	if CurrentCameraType == CameraType.TRANSITION_SMOOTH:
+		current_camera.slide_camera_left()
+	elif CurrentCameraType == CameraType.TRANSITION:
+		current_camera.move_camera_left()
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("CloseGame"):
@@ -59,15 +99,18 @@ func _process(delta: float) -> void:
 			get_tree().quit(0)
 		else:
 			get_tree().paused = true
+			
 	if Input.is_action_just_pressed("SwitchWindow"):
 		is_fullscreen = not is_fullscreen
 		set_borderless_fullscreen(is_fullscreen)
 		
-	if Input.is_action_just_pressed("CameraFollow"):
-		_camera_follow()
-	if Input.is_action_just_pressed("CameraTransition"):
-		_camera_transition()
-		
+	if Input.is_action_just_pressed("CameraCycle"):
+		_camera_cycle()
+	
+	if Input.is_action_just_pressed("DebugActionRight"):
+		_move_camera_right()
+	if Input.is_action_just_pressed("DebugActionLeft"):
+		_move_camera_left()
 	$CanvasLayer/UIRoot/LabYVel.text = "Velocity: " + str(floor(-1*$Player.velocity.y))
 	
 func set_borderless_fullscreen(enable: bool):
@@ -86,3 +129,7 @@ func set_borderless_fullscreen(enable: bool):
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 		DisplayServer.window_set_size(window_size)
 		DisplayServer.window_set_position(screen_pos)
+
+
+func _on_exit_to_room_2_body_entered(body: Node2D) -> void:
+	_move_camera_right()

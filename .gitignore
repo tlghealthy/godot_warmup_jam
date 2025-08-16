@@ -6,6 +6,7 @@
 .import/
 export.cfg
 export_credentials.cfg
+addons/
 
 # Godot specific instanciation formats and temp loads
 *.import

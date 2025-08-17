@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bydx4xlyngcvp"]
 
-[ext_resource type="Texture2D" path="res://blue_exclamation_mark.png" id="1_blue"]
-[ext_resource type="Script" path="res://blue_exclamation.gd" id="2_script"]
+[ext_resource type="Texture2D" uid="uid://mfs5r3e75xr5" path="res://blue_exclamation_mark.png" id="1_blue"]
+[ext_resource type="Script" uid="uid://dwoq2vjfmj73t" path="res://blue_exclamation.gd" id="2_script"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_blue1"]
 atlas = ExtResource("1_blue")

@@ -4,7 +4,8 @@ extends Area2D
 @export var direction: Vector2 = Vector2.RIGHT
 @export var lifetime: float = 3.0
 @export var damage: int = 10
-@export var collision_mask_names: Array[StringName] = []
+@export var target_groups: Array[StringName] = []
+@export var ignore_groups: Array[StringName] = []
 
 var time_alive: float = 0.0
 
@@ -12,11 +13,6 @@ func _ready() -> void:
 	if direction.length() == 0:
 		direction = Vector2.RIGHT
 	direction = direction.normalized()
-	if collision_mask_names.size() > 0:
-		var mask := 0
-		for name in collision_mask_names:
-			mask |= 1 << int(ProjectSettings.get_setting("layer_names/2d_physics/layer_" + name, 0))
-		collision_mask = mask
 	body_entered.connect(_on_body_entered)
 
 func _physics_process(_delta: float) -> void:
@@ -26,6 +22,17 @@ func _physics_process(_delta: float) -> void:
 		queue_free()
 
 func _on_body_entered(body: Node) -> void:
+	for g in ignore_groups:
+		if body.is_in_group(g):
+			return
+	if target_groups.size() > 0:
+		var ok := false
+		for g2 in target_groups:
+			if body.is_in_group(g2):
+				ok = true
+				break
+		if not ok:
+			return
 	if body.has_node("Health"):
 		var h := body.get_node("Health")
 		if h and h.has_method("apply_damage"):

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://n4ijmx7rnoi6" path="res://scenes/main.gd" id="1_rarhs"]
 [ext_resource type="PackedScene" uid="uid://cbos8c6d5fgm0" path="res://scenes/platform.tscn" id="2_pyanv"]
-[ext_resource type="PackedScene" path="res://scenes/Mech.tscn" id="4_rarhs"]
+[ext_resource type="PackedScene" uid="uid://capqr34bvf6sd" path="res://scenes/Mech.tscn" id="4_rarhs"]
 [ext_resource type="Texture2D" uid="uid://3wphottomjp2" path="res://art/tiles.png" id="5_c01mt"]
 [ext_resource type="Script" uid="uid://d0ong8corfntl" path="res://scenes/mech.gd" id="5_vcsgt"]
 [ext_resource type="Script" uid="uid://b3aqemq86itk8" path="res://scenes/room_extent.gd" id="6_c01mt"]
@@ -153,6 +153,18 @@ shape = SubResource("RectangleShape2D_jlsqs")
 
 [node name="EnemyTest" parent="Room1" instance=ExtResource("8_enemy")]
 position = Vector2(1440, 345)
+
+[node name="EnemyTest2" parent="Room1" instance=ExtResource("8_enemy")]
+position = Vector2(703, 901)
+
+[node name="EnemyTest3" parent="Room1" instance=ExtResource("8_enemy")]
+position = Vector2(527, 397)
+
+[node name="EnemyTest4" parent="Room1" instance=ExtResource("8_enemy")]
+position = Vector2(2143, 686)
+
+[node name="EnemyTest5" parent="Room1" instance=ExtResource("8_enemy")]
+position = Vector2(2330, 292)
 
 [node name="Room2" type="Node2D" parent="."]
 

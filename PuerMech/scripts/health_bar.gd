@@ -4,6 +4,7 @@ extends Node2D
 @export var bar_width: int = 80
 @export var bar_height: int = 8
 @export var show_when_full: bool = false
+@export var local_offset: Vector2 = Vector2(0, -48)
 
 var health: Node
 var current: int = 0
@@ -31,7 +32,7 @@ func _draw() -> void:
 	var bg := Color(0,0,0,0.7)
 	var fg := Color(0.9,0.2,0.2,1.0)
 	var outline := Color(1,1,1,0.8)
-	var rect := Rect2(Vector2(-bar_width/2, -48), Vector2(bar_width, bar_height))
+	var rect := Rect2(Vector2(-bar_width/2, 0) + local_offset, Vector2(bar_width, bar_height))
 	draw_rect(rect.grow(1), outline, false, 2)
 	draw_rect(rect, bg)
 	var filled := Rect2(rect.position, Vector2(bar_width * percent, bar_height))

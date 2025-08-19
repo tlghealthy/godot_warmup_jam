@@ -1,14 +1,14 @@
 extends Camera2D
 
 var SCREEN_SIZE: Vector2 = Vector2i(1920,1080)
-var camera_xy: Vector2 = Vector2(1920,1080)/2
+var camera_xy: Vector2 = Vector2(1920.0,1080.0)/2.0
 var busy: bool = false
 
 func _ready() -> void:
 	global_position = camera_xy
 	pass
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 # gradually move camera by offset

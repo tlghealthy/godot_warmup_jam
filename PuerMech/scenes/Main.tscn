@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://b3aqemq86itk8" path="res://scenes/room_extent.gd" id="6_c01mt"]
 [ext_resource type="Script" uid="uid://rj0sloeb7yqw" path="res://scenes/exit_to_room_2.gd" id="6_jlsqs"]
 [ext_resource type="Script" uid="uid://6b50fjr6172g" path="res://scenes/screen_camera.gd" id="7_nxtc6"]
-[ext_resource type="PackedScene" path="res://scenes/EnemyBasic.tscn" id="8_enemy"]
+[ext_resource type="PackedScene" uid="uid://bikslbogvuoua" path="res://scenes/EnemyBasic.tscn" id="8_enemy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q8u5g"]
 size = Vector2(180, 476)

@@ -11,7 +11,7 @@ var start_position: Vector2
 var patrol_dir: int = 1
 var shoot_timer: float = 0.0
 
-@onready var health = $Health
+@onready var health: Node = $Health
 @onready var muzzle_left: Node2D = $MuzzleLeft
 @onready var muzzle_right: Node2D = $MuzzleRight
 
@@ -36,22 +36,23 @@ func _physics_process(delta: float) -> void:
 func _shoot() -> void:
 	if projectile_scene == null:
 		return
-	var target_dir := Vector2.RIGHT * patrol_dir
+	var target_dir: Vector2 = Vector2.RIGHT * patrol_dir
 	if face_player:
-		var player := get_tree().get_first_node_in_group("player")
-		if player and player is Node2D:
-			var to_player := (player.global_position - global_position).normalized()
-			if to_player.length() > 0:
+		var player_node: Node2D = get_tree().get_first_node_in_group("player") as Node2D
+		if player_node:
+			var to_player: Vector2 = (player_node.global_position - global_position).normalized()
+			if to_player != Vector2.ZERO:
 				target_dir = to_player
-	var spawn := muzzle_right if target_dir.x >= 0 else muzzle_left
-	var p: Area2D = projectile_scene.instantiate()
-	p.global_position = spawn.global_position if spawn else global_position
-	if p.has_method("set"):
-		pass
-	if p.has_variable("direction"):
-		p.direction = target_dir
-	elif p.has_method("set_direction"):
-		p.set_direction(target_dir)
+	var spawn_pos: Vector2 = global_position
+	if target_dir.x >= 0.0 and is_instance_valid(muzzle_right):
+		spawn_pos = muzzle_right.global_position
+	elif is_instance_valid(muzzle_left):
+		spawn_pos = muzzle_left.global_position
+	var p = projectile_scene.instantiate()
+	if p is Node2D:
+		p.global_position = spawn_pos
+	# Set projectile direction dynamically (scripted property on the projectile)
+	p.set("direction", target_dir)
 	get_tree().current_scene.add_child(p)
 
 func _on_died() -> void:

@@ -19,9 +19,9 @@ func _ready() -> void:
 		collision_mask = mask
 	body_entered.connect(_on_body_entered)
 
-func _physics_process(delta: float) -> void:
-	global_position += direction * speed * delta
-	time_alive += delta
+func _physics_process(_delta: float) -> void:
+	global_position += direction * speed * _delta
+	time_alive += _delta
 	if time_alive >= lifetime:
 		queue_free()
 
@@ -31,4 +31,3 @@ func _on_body_entered(body: Node) -> void:
 		if h and h.has_method("apply_damage"):
 			h.apply_damage(damage)
 	queue_free()
-

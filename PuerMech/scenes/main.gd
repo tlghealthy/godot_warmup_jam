@@ -131,5 +131,6 @@ func set_borderless_fullscreen(enable: bool):
 		DisplayServer.window_set_position(screen_pos)
 
 
-func _on_exit_to_room_2_body_entered(body: Node2D) -> void:
+
+func _on_exit_to_room_2_body_entered(_body: Node2D) -> void:
 	_move_camera_right()

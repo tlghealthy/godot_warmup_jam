@@ -36,4 +36,3 @@ func _draw() -> void:
 	draw_rect(rect, bg)
 	var filled := Rect2(rect.position, Vector2(bar_width * percent, bar_height))
 	draw_rect(filled, fg)
-

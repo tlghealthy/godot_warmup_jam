@@ -56,3 +56,7 @@ func _physics_process(delta):
 	elif velocity.x < 0:
 		$AnimationPlayer.play("AnmMechWalkLeft")
 	move_and_slide()
+
+func _ready() -> void:
+	# Ensure the player is discoverable
+	add_to_group("player")

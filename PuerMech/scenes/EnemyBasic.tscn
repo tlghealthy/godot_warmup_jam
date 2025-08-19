@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scenes/enemy_basic.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/health.gd" id="2"]
+[ext_resource type="Script" path="res://scripts/health_bar.gd" id="3"]
+[ext_resource type="PackedScene" path="res://scenes/Projectile.tscn" id="4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ebase"]
+size = Vector2(40, 60)
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1")
+projectile_scene = ExtResource("4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ebase")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("2")
+
+[node name="HealthBar" type="Control" parent="."]
+script = ExtResource("3")
+health_path = NodePath("../Health")
+
+[node name="MuzzleLeft" type="Node2D" parent="."]
+position = Vector2(-16, -8)
+
+[node name="MuzzleRight" type="Node2D" parent="."]
+position = Vector2(16, -8)
+

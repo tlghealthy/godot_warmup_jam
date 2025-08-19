@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://crb38507yjywg"]
+[gd_scene load_steps=13 format=3 uid="uid://crb38507yjywg"]
 
 [ext_resource type="Texture2D" uid="uid://ww3kaovdgmv8" path="res://art/mech_body.png" id="1_gtm0q"]
 [ext_resource type="Texture2D" uid="uid://db128kxmtacgf" path="res://art/mech_arm_left.png" id="2_w2kmk"]
 [ext_resource type="Texture2D" uid="uid://bb6q8grfxnah6" path="res://art/mech_arm_right.png" id="3_36oj6"]
 [ext_resource type="Texture2D" uid="uid://bifwnc04xarcq" path="res://art/mech_leg_left.png" id="4_0mg5s"]
 [ext_resource type="Texture2D" uid="uid://tax7e47kx2qq" path="res://art/mech_leg_right.png" id="5_twhvg"]
+[ext_resource type="Script" path="res://scripts/health.gd" id="6_health"]
+[ext_resource type="Script" path="res://scripts/health_bar.gd" id="7_hbar"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gtm0q"]
 radius = 120.0
@@ -134,3 +136,10 @@ shape = SubResource("CapsuleShape2D_gtm0q")
 libraries = {
 &"": SubResource("AnimationLibrary_0mg5s")
 }
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("6_health")
+
+[node name="HealthBar" type="Node2D" parent="."]
+script = ExtResource("7_hbar")
+health_path = NodePath("../Health")

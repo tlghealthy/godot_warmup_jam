@@ -24,9 +24,7 @@ texture = ExtResource("3_5ya5a")
 [node name="Health" type="Node" parent="."]
 script = ExtResource("2")
 
-[node name="HealthBar" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
+[node name="HealthBar" type="Node2D" parent="."]
 script = ExtResource("3")
 health_path = NodePath("../Health")
 

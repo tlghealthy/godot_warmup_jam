@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scenes/enemy_burster.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/weapon.gd" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/Projectile.tscn" id="3"]
+
+[sub_resource type="RectangleShape2D" id="shape"]
+size = Vector2(40, 60)
+
+[node name="EnemyBurster" type="CharacterBody2D"]
+script = ExtResource("1")
+projectile_scene = ExtResource("3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("shape")
+
+[node name="Weapon" type="Node" parent="."]
+script = ExtResource("2")
+projectile_scene = ExtResource("3")
+target_groups = []
+ignore_groups = ["enemy"]
+bullet_color = Color(0.7, 0.5, 1, 1)
+

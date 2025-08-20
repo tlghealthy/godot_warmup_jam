@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bikslbogvuoua"]
+[gd_scene load_steps=8 format=3 uid="uid://bikslbogvuoua"]
 
 [ext_resource type="Script" uid="uid://csosf0fqm81y2" path="res://scenes/enemy_basic.gd" id="1"]
 [ext_resource type="Script" uid="uid://bd7rtuknbkhdf" path="res://scripts/health.gd" id="2"]
 [ext_resource type="Script" uid="uid://putfjdg6lymq" path="res://scripts/health_bar.gd" id="3"]
 [ext_resource type="Texture2D" uid="uid://dsu6qxb740yvo" path="res://art/enemy.png" id="3_5ya5a"]
 [ext_resource type="PackedScene" path="res://scenes/Projectile.tscn" id="4"]
+[ext_resource type="Script" uid="uid://c237hamteovpl" path="res://scripts/weapon.gd" id="5_weapon"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ebase"]
 size = Vector2(40, 60)
@@ -33,3 +34,12 @@ position = Vector2(-16, -8)
 
 [node name="MuzzleRight" type="Node2D" parent="."]
 position = Vector2(16, -8)
+
+[node name="Weapon" type="Node" parent="."]
+script = ExtResource("5_weapon")
+projectile_scene = ExtResource("4")
+fire_rate = 1.2
+muzzle_paths = Array[NodePath]([NodePath("../MuzzleLeft"), NodePath("../MuzzleRight")])
+bullet_color = Color(0.9, 0.4, 0.3, 1)
+target_groups = Array[StringName]([&"player"])
+ignore_groups = Array[StringName]([&"enemy"])

@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://clifej6o4ldh0"]
+
+[ext_resource type="Script" uid="uid://qovv3j8o7744" path="res://scenes/enemy_spreader.gd" id="1"]
+[ext_resource type="Script" uid="uid://c237hamteovpl" path="res://scripts/weapon.gd" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/Projectile.tscn" id="3"]
+
+[sub_resource type="RectangleShape2D" id="shape"]
+size = Vector2(40, 60)
+
+[node name="EnemySpreader" type="CharacterBody2D"]
+script = ExtResource("1")
+projectile_scene = ExtResource("3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("shape")
+
+[node name="Weapon" type="Node" parent="."]
+script = ExtResource("2")
+projectile_scene = ExtResource("3")
+fire_rate = 0.8
+bullet_color = Color(1, 0.8, 0.2, 1)
+target_groups = Array[StringName]([&"player"])
+ignore_groups = Array[StringName]([&"enemy"])

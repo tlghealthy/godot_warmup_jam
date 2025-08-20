@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://capqr34bvf6sd"]
+[gd_scene load_steps=16 format=3 uid="uid://capqr34bvf6sd"]
 
 [ext_resource type="Texture2D" uid="uid://dphybpn4e672d" path="res://art/mech_body.png" id="1_gtm0q"]
 [ext_resource type="Texture2D" uid="uid://trksiv5sgi0" path="res://art/mech_arm_left.png" id="2_w2kmk"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://c4gtqts5mdsfr" path="res://art/mech_leg_right.png" id="5_twhvg"]
 [ext_resource type="Script" uid="uid://bd7rtuknbkhdf" path="res://scripts/health.gd" id="6_health"]
 [ext_resource type="Script" uid="uid://putfjdg6lymq" path="res://scripts/health_bar.gd" id="7_hbar"]
+[ext_resource type="Script" uid="uid://c237hamteovpl" path="res://scripts/weapon.gd" id="8_weapon"]
+[ext_resource type="Script" uid="uid://dnfxo08gtrjy4" path="res://scenes/player_weapon.gd" id="9_pweapon"]
+[ext_resource type="PackedScene" path="res://scenes/Projectile.tscn" id="10_proj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gtm0q"]
 radius = 120.0
@@ -147,3 +150,14 @@ health_path = NodePath("../Health")
 bar_width = 160
 bar_height = 15
 local_offset = Vector2(0, -90)
+
+[node name="Weapon" type="Node" parent="."]
+script = ExtResource("8_weapon")
+projectile_scene = ExtResource("10_proj")
+bullet_color = Color(0.3, 0.9, 0.9, 1)
+target_groups = Array[StringName]([&"enemy"])
+ignore_groups = Array[StringName]([&"player"])
+
+[node name="WeaponController" type="Node" parent="."]
+script = ExtResource("9_pweapon")
+weapon = NodePath("../Weapon")

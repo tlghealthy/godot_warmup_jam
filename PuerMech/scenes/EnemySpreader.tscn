@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://clifej6o4ldh0"]
+[gd_scene load_steps=6 format=3 uid="uid://clifej6o4ldh0"]
 
 [ext_resource type="Script" uid="uid://qovv3j8o7744" path="res://scenes/enemy_spreader.gd" id="1"]
 [ext_resource type="Script" uid="uid://c237hamteovpl" path="res://scripts/weapon.gd" id="2"]
 [ext_resource type="PackedScene" path="res://scenes/Projectile.tscn" id="3"]
+[ext_resource type="Texture2D" uid="uid://cvhk4qvt7r5qd" path="res://art/enemySpreader.png" id="3_2chpw"]
 
 [sub_resource type="RectangleShape2D" id="shape"]
 size = Vector2(40, 60)
@@ -13,6 +14,11 @@ projectile_scene = ExtResource("3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("shape")
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+position = Vector2(-1.5, 1.5)
+scale = Vector2(0.0995575, 0.150617)
+texture = ExtResource("3_2chpw")
 
 [node name="Weapon" type="Node" parent="."]
 script = ExtResource("2")

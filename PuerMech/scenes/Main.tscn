@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://6b50fjr6172g" path="res://scenes/screen_camera.gd" id="7_nxtc6"]
 [ext_resource type="PackedScene" uid="uid://bikslbogvuoua" path="res://scenes/EnemyBasic.tscn" id="8_enemy"]
 [ext_resource type="PackedScene" uid="uid://clifej6o4ldh0" path="res://scenes/EnemySpreader.tscn" id="9_enemy"]
-[ext_resource type="PackedScene" path="res://scenes/EnemyBurster.tscn" id="10_enemy"]
+[ext_resource type="PackedScene" uid="uid://b4lsxwjy1qk82" path="res://scenes/EnemyBurster.tscn" id="10_enemy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q8u5g"]
 size = Vector2(180, 476)
@@ -83,10 +83,6 @@ script = ExtResource("5_vcsgt")
 position = Vector2(-2, 102)
 shape = SubResource("RectangleShape2D_q8u5g")
 
-[node name="Weapon" parent="Player" index="5"]
-target_groups = Array[StringName]([&"enemy"])
-ignore_groups = Array[StringName]([&"player"])
-
 [node name="Camera2D" type="Camera2D" parent="Player"]
 visible = false
 
@@ -122,7 +118,8 @@ rotation = -0.410686
 scale = Vector2(0.848496, 0.591404)
 
 [node name="Platform7" parent="Room1" instance=ExtResource("2_pyanv")]
-position = Vector2(1756, 1008)
+position = Vector2(858, 872)
+rotation = 1.56879
 scale = Vector2(0.848496, 0.591404)
 
 [node name="Platform2" parent="Room1" instance=ExtResource("2_pyanv")]
@@ -157,17 +154,14 @@ script = ExtResource("6_jlsqs")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Room1/ExitToRoom2"]
 shape = SubResource("RectangleShape2D_jlsqs")
 
-[node name="EnemyTest" parent="Room1" instance=ExtResource("8_enemy")]
-position = Vector2(1440, 345)
-
 [node name="EnemySpreader" parent="Room1" instance=ExtResource("9_enemy")]
 position = Vector2(378, 868)
 
 [node name="EnemyBurster" parent="Room1" instance=ExtResource("10_enemy")]
-position = Vector2(1645, 594)
+position = Vector2(1207, 858)
 
 [node name="EnemyTest3" parent="Room1" instance=ExtResource("8_enemy")]
-position = Vector2(527, 397)
+position = Vector2(2054, 459)
 
 [node name="EnemyTest4" parent="Room1" instance=ExtResource("8_enemy")]
 position = Vector2(2143, 686)

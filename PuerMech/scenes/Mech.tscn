@@ -160,4 +160,3 @@ ignore_groups = Array[StringName]([&"player"])
 
 [node name="WeaponController" type="Node" parent="."]
 script = ExtResource("9_pweapon")
-weapon = NodePath("../Weapon")

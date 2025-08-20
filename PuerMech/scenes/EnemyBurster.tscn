@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=6 format=3 uid="uid://b4lsxwjy1qk82"]
 
-[ext_resource type="Script" path="res://scenes/enemy_burster.gd" id="1"]
-[ext_resource type="Script" path="res://scripts/weapon.gd" id="2"]
+[ext_resource type="Script" uid="uid://cjhq38lw2588p" path="res://scenes/enemy_burster.gd" id="1"]
+[ext_resource type="Script" uid="uid://c237hamteovpl" path="res://scripts/weapon.gd" id="2"]
 [ext_resource type="PackedScene" path="res://scenes/Projectile.tscn" id="3"]
+[ext_resource type="Texture2D" uid="uid://dm2jgmrqkae6e" path="res://art/enemyBurster.png" id="3_clpsp"]
 
 [sub_resource type="RectangleShape2D" id="shape"]
 size = Vector2(40, 60)
@@ -14,10 +15,13 @@ projectile_scene = ExtResource("3")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("shape")
 
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+position = Vector2(-1, 3.10827e-06)
+scale = Vector2(0.0884956, 0.148148)
+texture = ExtResource("3_clpsp")
+
 [node name="Weapon" type="Node" parent="."]
 script = ExtResource("2")
 projectile_scene = ExtResource("3")
-target_groups = []
-ignore_groups = ["enemy"]
 bullet_color = Color(0.7, 0.5, 1, 1)
-
+ignore_groups = Array[StringName]([&"enemy"])

@@ -151,9 +151,13 @@ bar_width = 160
 bar_height = 15
 local_offset = Vector2(0, -90)
 
+[node name="Muzzle" type="Node2D" parent="."]
+position = Vector2(160, -40)
+
 [node name="Weapon" type="Node" parent="."]
 script = ExtResource("8_weapon")
 projectile_scene = ExtResource("10_proj")
+muzzle_paths = Array[NodePath]([NodePath("../Muzzle")])
 bullet_color = Color(0.3, 0.9, 0.9, 1)
 target_groups = Array[StringName]([&"enemy"])
 ignore_groups = Array[StringName]([&"player"])

@@ -44,6 +44,9 @@ func _on_body_entered(body: Node) -> void:
 				break
 		if not ok:
 			return
+	# Do not collide with the shooter if it's set as the parent
+	if get_parent() and body == get_parent():
+		return
 	if body.has_node("Health"):
 		var h := body.get_node("Health")
 		if h and h.has_method("apply_damage"):

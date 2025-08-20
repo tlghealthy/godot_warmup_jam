@@ -41,5 +41,6 @@ func fire(direction: Vector2) -> void:
 			b.set("color", bullet_color)
 			b.set("target_groups", target_groups)
 			b.set("ignore_groups", ignore_groups)
+		# Add to the current scene root (not as a child of the shooter)
 		get_tree().current_scene.add_child(b)
 

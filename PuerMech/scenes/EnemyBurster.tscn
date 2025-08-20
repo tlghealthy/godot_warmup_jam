@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://b4lsxwjy1qk82"]
+[gd_scene load_steps=8 format=3 uid="uid://b4lsxwjy1qk82"]
 
 [ext_resource type="Script" uid="uid://cjhq38lw2588p" path="res://scenes/enemy_burster.gd" id="1"]
 [ext_resource type="Script" uid="uid://c237hamteovpl" path="res://scripts/weapon.gd" id="2"]
 [ext_resource type="PackedScene" path="res://scenes/Projectile.tscn" id="3"]
 [ext_resource type="Texture2D" uid="uid://dm2jgmrqkae6e" path="res://art/enemyBurster.png" id="3_clpsp"]
+[ext_resource type="Script" uid="uid://bd7rtuknbkhdf" path="res://scripts/health.gd" id="4_health"]
+[ext_resource type="Script" uid="uid://putfjdg6lymq" path="res://scripts/health_bar.gd" id="5_hbar"]
 
 [sub_resource type="RectangleShape2D" id="shape"]
 size = Vector2(40, 60)
@@ -25,3 +27,10 @@ script = ExtResource("2")
 projectile_scene = ExtResource("3")
 bullet_color = Color(0.7, 0.5, 1, 1)
 ignore_groups = Array[StringName]([&"enemy"])
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("4_health")
+
+[node name="HealthBar" type="Node2D" parent="."]
+script = ExtResource("5_hbar")
+health_path = NodePath("../Health")

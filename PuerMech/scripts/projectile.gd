@@ -43,6 +43,9 @@ func _on_body_entered(body: Node) -> void:
 				ok = true
 				break
 		if not ok:
+			# If we hit a solid physics body (e.g., wall/platform) and it's not ignored, destroy the bullet
+			if body is PhysicsBody2D or body is TileMap:
+				queue_free()
 			return
 	# Do not collide with the shooter if it's set as the parent
 	if get_parent() and body == get_parent():

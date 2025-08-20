@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://clifej6o4ldh0"]
+[gd_scene load_steps=8 format=3 uid="uid://clifej6o4ldh0"]
 
 [ext_resource type="Script" uid="uid://qovv3j8o7744" path="res://scenes/enemy_spreader.gd" id="1"]
 [ext_resource type="Script" uid="uid://c237hamteovpl" path="res://scripts/weapon.gd" id="2"]
 [ext_resource type="PackedScene" path="res://scenes/Projectile.tscn" id="3"]
 [ext_resource type="Texture2D" uid="uid://cvhk4qvt7r5qd" path="res://art/enemySpreader.png" id="3_2chpw"]
+[ext_resource type="Script" uid="uid://bd7rtuknbkhdf" path="res://scripts/health.gd" id="4_health"]
+[ext_resource type="Script" uid="uid://putfjdg6lymq" path="res://scripts/health_bar.gd" id="5_hbar"]
 
 [sub_resource type="RectangleShape2D" id="shape"]
 size = Vector2(40, 60)
@@ -27,3 +29,10 @@ fire_rate = 0.8
 bullet_color = Color(1, 0.8, 0.2, 1)
 target_groups = Array[StringName]([&"player"])
 ignore_groups = Array[StringName]([&"enemy"])
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("4_health")
+
+[node name="HealthBar" type="Node2D" parent="."]
+script = ExtResource("5_hbar")
+health_path = NodePath("../Health")

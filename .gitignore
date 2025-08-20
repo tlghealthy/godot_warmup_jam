@@ -24,3 +24,9 @@ mono_crash.*.json
 
 # krita autosaves
 *-autosave.kra
+
+# copilot
+.mcp.json
+
+# macOS specific
+.DS_Store

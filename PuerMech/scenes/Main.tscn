@@ -1,16 +1,39 @@
-[gd_scene load_steps=15 format=3 uid="uid://cyxpqx6bf0yhy"]
+[gd_scene load_steps=19 format=3 uid="uid://cyxpqx6bf0yhy"]
 
-[ext_resource type="Script" uid="uid://cd7rfkg71u6rh" path="res://scenes/main.gd" id="1_rarhs"]
-[ext_resource type="PackedScene" uid="uid://cbos8c6d5fgm0" path="res://scenes/platform.tscn" id="2_pyanv"]
+[ext_resource type="Script" uid="uid://c3k7jtgcw0nht" path="res://scenes/main.gd" id="1_rarhs"]
 [ext_resource type="PackedScene" uid="uid://crb38507yjywg" path="res://scenes/Mech.tscn" id="4_rarhs"]
-[ext_resource type="Texture2D" uid="uid://53yavly7e3i" path="res://art/tiles.png" id="5_c01mt"]
-[ext_resource type="Script" uid="uid://d3ox81tb0bx4v" path="res://scenes/mech.gd" id="5_vcsgt"]
-[ext_resource type="Script" uid="uid://3n31nfxfwlv1" path="res://scenes/room_extent.gd" id="6_c01mt"]
-[ext_resource type="Script" uid="uid://clkw2nm3h68el" path="res://scenes/exit_to_room_2.gd" id="6_jlsqs"]
-[ext_resource type="Script" uid="uid://dvt8nar6k68jn" path="res://scenes/screen_camera.gd" id="7_nxtc6"]
+[ext_resource type="Texture2D" uid="uid://d2xyplrtiu6c3" path="res://art/tiles.png" id="5_c01mt"]
+[ext_resource type="Texture2D" uid="uid://cwqvbbip1edih" path="res://art/darkstonetile.png" id="5_q8u5g"]
+[ext_resource type="Script" uid="uid://cmlnollofhj00" path="res://scenes/mech.gd" id="5_vcsgt"]
+[ext_resource type="Script" uid="uid://1ro7mato5hd" path="res://scenes/room_extent.gd" id="6_c01mt"]
+[ext_resource type="Script" uid="uid://cdru485ps2p1j" path="res://scenes/exit_to_room_2.gd" id="6_jlsqs"]
+[ext_resource type="Script" uid="uid://dgacx878rl0yh" path="res://scenes/screen_camera.gd" id="7_nxtc6"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_q8u5g"]
-size = Vector2(180, 476)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jlsqs"]
+radius = 118.0
+height = 500.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lhr70"]
+texture = ExtResource("5_q8u5g")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-23.1434, -6.77369, 32, -9.59606, 32, 32, -32, 32)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(32, -8.46711, -32, -9.59606, -32, 32, 32, 32)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -8.46711, 5.08027, -1.69342, 32, 32, -32, 32)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-26.5303, -32, 32, -32, 32, 32, -28.7882, 32)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 25.4013, -32, 24.8368, 32, -32, 32)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 8.46711, -3.38684, 23.7079, -20.8855, 15.2408)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 8.46711, -32, 7.90263)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 25.4013, -32, 16.9342, 17.4987, -6.20921, 23.7079, -18.6276, 10.1605, -32, 7.90263)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vcsgt"]
 texture = ExtResource("5_c01mt")
@@ -38,9 +61,16 @@ texture_region_size = Vector2i(64, 64)
 tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_vcsgt")
+sources/0 = SubResource("TileSetAtlasSource_lhr70")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jlsqs"]
 size = Vector2(20, 186)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jlsqs"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_q8u5g"]
+font_size = 21
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nxtc6"]
 texture = ExtResource("5_c01mt")
@@ -64,73 +94,46 @@ texture_region_size = Vector2i(64, 64)
 2:2/0 = 0
 2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wp0k4"]
+texture = ExtResource("5_q8u5g")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_jlsqs"]
 tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_nxtc6")
+sources/1 = SubResource("TileSetAtlasSource_wp0k4")
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_rarhs")
 
 [node name="Player" parent="." instance=ExtResource("4_rarhs")]
-position = Vector2(937, 345)
+position = Vector2(831, 686)
 script = ExtResource("5_vcsgt")
 
 [node name="CollisionShape2D" parent="Player" index="1"]
 position = Vector2(-2, 102)
-shape = SubResource("RectangleShape2D_q8u5g")
+shape = SubResource("CapsuleShape2D_jlsqs")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 visible = false
 
 [node name="Room1" type="Node" parent="."]
 
-[node name="Platform" parent="Room1" instance=ExtResource("2_pyanv")]
-position = Vector2(-12, 788)
-scale = Vector2(0.848496, 0.591404)
-
-[node name="Platform9" parent="Room1" instance=ExtResource("2_pyanv")]
-position = Vector2(-80, 651)
-scale = Vector2(0.848496, 0.591404)
-
-[node name="Platform10" parent="Room1" instance=ExtResource("2_pyanv")]
-position = Vector2(348, 567)
-scale = Vector2(0.848496, 0.591404)
-
-[node name="Platform4" parent="Room1" instance=ExtResource("2_pyanv")]
-position = Vector2(51, 925)
-scale = Vector2(0.848496, 0.591404)
-
-[node name="Platform5" parent="Room1" instance=ExtResource("2_pyanv")]
-position = Vector2(1538, 463)
-scale = Vector2(0.848496, 0.591404)
-
-[node name="Platform6" parent="Room1" instance=ExtResource("2_pyanv")]
-position = Vector2(980, 1035)
-scale = Vector2(3.48849, 0.591404)
-
-[node name="Platform8" parent="Room1" instance=ExtResource("2_pyanv")]
-position = Vector2(1234, 730)
-rotation = -0.410686
-scale = Vector2(0.848496, 0.591404)
-
-[node name="Platform7" parent="Room1" instance=ExtResource("2_pyanv")]
-position = Vector2(1756, 1008)
-scale = Vector2(0.848496, 0.591404)
-
-[node name="Platform2" parent="Room1" instance=ExtResource("2_pyanv")]
-position = Vector2(569, 519)
-scale = Vector2(0.848496, 0.591404)
-
-[node name="Platform3" parent="Room1" instance=ExtResource("2_pyanv")]
-position = Vector2(942, 470)
-scale = Vector2(0.848496, 0.591404)
-
 [node name="TileMap" type="TileMap" parent="Room1"]
 position = Vector2(1, 0)
 tile_set = SubResource("TileSet_c01mt")
 format = 2
-layer_0/tile_data = PackedInt32Array(393218, 1, 0, 393219, 65537, 0, 393220, 65537, 0, 393221, 65537, 0, 393222, 131073, 0, 458758, 131073, 2, 458754, 1, 2, 458755, 65537, 2, 458756, 65537, 2, 458757, 65537, 2, 524317, 1, 2, 458781, 1, 1, 393245, 1, 1, 327709, 1, 1, 262173, 1, 1, 196637, 1, 1, 131101, 1, 1, 65565, 1, 1, 29, 1, 1, -65507, 1, 1, -131043, 1, 1, -196579, 1, 1, -262115, 1, 1, -327651, 1, 1, -393187, 1, 1, -458723, 1, 1, -524259, 1, 1, -589795, 1, 0, 786461, 1, 0, 917532, 65537, 0, 917531, 65537, 0, 917530, 65537, 0, 851997, 1, 1, 917533, 65537, 1)
+layer_0/tile_data = PackedInt32Array(393218, 1, 0, 393219, 65537, 0, 393220, 65537, 0, 393221, 65537, 0, 393222, 131073, 0, 458758, 131073, 2, 458754, 1, 2, 458755, 65537, 2, 458756, 65537, 2, 458757, 65537, 2, 524317, 1, 2, 458781, 1, 1, 393245, 1, 1, 327709, 1, 1, 262173, 1, 1, 196637, 1, 1, 131101, 1, 1, 65565, 1, 1, 29, 1, 1, -65507, 1, 1, -131043, 1, 1, -196579, 1, 1, -262115, 1, 1, -327651, 1, 1, -393187, 1, 1, -458723, 1, 1, -524259, 1, 1, -589795, 1, 0, 786461, 1, 0, 917532, 65537, 0, 917531, 65537, 0, 917530, 65537, 0, 851997, 1, 1, 917533, 65537, 1, 786445, 65536, 0, 786446, 131072, 0, 786444, 65536, 0, 786443, 65536, 0, 786442, 0, 0, 851982, 131072, 2, 851981, 65536, 2, 851980, 65536, 2, 851979, 65536, 2, 851978, 0, 2, 655383, 65536, 0, 655384, 131072, 0, 655382, 0, 0, 720918, 0, 1, 720919, 65536, 1, 720920, 131072, 1, 786456, 131072, 2, 786455, 65536, 2, 786454, 0, 2, 917528, 65536, 0, 917529, 131072, 0, 983065, 131072, 1, 1048601, 131072, 1, 983064, 65536, 1, 983063, 65536, 1, 983062, 65536, 1, 983061, 65536, 1, 983060, 65536, 1, 983059, 65536, 1, 983058, 65536, 1, 983057, 65536, 1, 1048600, 65536, 1, 1048599, 65536, 1, 1048598, 65536, 1, 1048597, 65536, 1, 1048596, 65536, 1, 1048595, 65536, 1, 1048594, 65536, 1, 1048593, 65536, 1, 1048592, 65536, 1, 1048591, 65536, 1, 1048590, 65536, 1, 983056, 65536, 1, 983055, 65536, 1, 983054, 65536, 1, 917527, 65536, 0, 917526, 65536, 0, 917525, 65536, 0, 917524, 65536, 0, 917523, 65536, 0, 917522, 65536, 0, 917521, 65536, 0, 917520, 65536, 0, 917519, 65536, 0, 917518, 65536, 0, 917517, 0, 0, 983053, 0, 1, 1048589, 0, 1)
 
 [node name="RoomExtent" type="ColorRect" parent="Room1"]
 visible = false
@@ -149,6 +152,28 @@ script = ExtResource("6_jlsqs")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Room1/ExitToRoom2"]
 shape = SubResource("RectangleShape2D_jlsqs")
+
+[node name="DEBUG_Keys" type="Label" parent="Room1"]
+offset_left = 564.0
+offset_top = 357.0
+offset_right = 1065.0
+offset_bottom = 594.0
+text = "DEBUG
+'P' to Switch Cameras
+In Transition Cameras:
+   'Q' - Camera Left <-
+   'E' - Camera Right ->"
+label_settings = SubResource("LabelSettings_jlsqs")
+
+[node name="DEBUG_Transition" type="Label" parent="Room1"]
+offset_left = 1353.0
+offset_top = 549.0
+offset_right = 1875.0
+offset_bottom = 645.0
+text = "If in transition camera
+will move camera to the right one time only ->
+TODO: Make room manager to handle these states?"
+label_settings = SubResource("LabelSettings_q8u5g")
 
 [node name="Room2" type="Node2D" parent="."]
 

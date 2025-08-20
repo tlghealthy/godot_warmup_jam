@@ -26,7 +26,8 @@ func _physics_process(delta):
 		if is_on_ceiling():
 			velocity.y = 200
 			jump_charge_time = 0
-			cur_jumps = max_jumps
+			cur_jumps = 0
+			print("bonk")
 			
 		else:
 			if Input.is_action_just_released("PlayerJump") and cur_jumps > 0:

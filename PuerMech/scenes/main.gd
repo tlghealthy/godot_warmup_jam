@@ -132,4 +132,5 @@ func set_borderless_fullscreen(enable: bool):
 
 
 func _on_exit_to_room_2_body_entered(body: Node2D) -> void:
+	if body.name != "Player": return
 	_move_camera_right()

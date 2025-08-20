@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://0iijhq4bvave"]
+[gd_scene load_steps=6 format=3 uid="uid://0iijhq4bvave"]
 
 [ext_resource type="Texture2D" uid="uid://dxe1en8g5lm4k" path="res://art/mech.png" id="1_tw2hx"]
 
@@ -7,6 +7,13 @@ size = Vector2(20, 28.9535)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yb6hn"]
 size = Vector2(836, 58)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_3vyb7"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g2els"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
 
 [node name="Player" type="CharacterBody2D"]
 
@@ -21,3 +28,7 @@ shape = SubResource("RectangleShape2D_65m6u")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2(-2, -72)
 shape = SubResource("RectangleShape2D_yb6hn")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+texture = SubResource("CanvasTexture_3vyb7")
+process_material = SubResource("ParticleProcessMaterial_g2els")

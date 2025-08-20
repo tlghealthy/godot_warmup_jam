@@ -1,19 +1,35 @@
 extends CharacterBody2D
 
-@export var speed := 1200          # Horizontal movement speed (pixels/second)
-@export var jump_speed := -1800    # Upward velocity when jumping (negative because y axis is down)
-@export var gravity := 4000        # Gravity force applied each frame
 
-func _physics_process(delta: float) -> void:
-	# Apply gravity
-	velocity.y += gravity * delta
+const SPEED = 300.0
+const JUMP_VELOCITY = -400.0
 
-	# Get horizontal input: returns -1, 0 or 1 based on walk_left/walk_right actions
-	velocity.x = Input.get_axis("walk_left", "walk_right") * speed
+# Get the gravity from the project settings to be synced with RigidBody nodes.
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-	# Move and collide using built‑in function
+
+func _physics_process(delta):
+	# Add the gravity.
+	#if not is_on_floor():
+		#velocity.y += gravity * delta
+
+	# Handle jump.
+	#if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		#velocity.y = JUMP_VELOCITY
+
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	var direction = Vector2(
+		Input.get_axis("ui_left", "ui_right"),
+		Input.get_axis("ui_up", "ui_down")
+	)
+	
+	if direction.length() > 0:
+		direction = direction.normalized()
+		velocity.x = direction.x * SPEED
+		velocity.y = direction.y * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.y = move_toward(velocity.y, 0, SPEED)
+
 	move_and_slide()
-
-	# Jump only when on the floor
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = jump_speed

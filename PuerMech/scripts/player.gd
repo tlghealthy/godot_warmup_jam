@@ -9,7 +9,7 @@ func _physics_process(delta: float) -> void:
 	velocity.y += gravity * delta
 
 	# Get horizontal input: returns -1, 0 or 1 based on walk_left/walk_right actions
-	velocity.x = Input.get_axis("walk_left", "walk_right") * speed
+	velocity.x = Input.get_axis("PlayerWalkLeft", "walk_right") * speed
 
 	# Move and collide using built‑in function
 	move_and_slide()

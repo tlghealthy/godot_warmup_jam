@@ -30,4 +30,3 @@ func _process(delta: float) -> void:
 		var steps := [-0.5, -0.25, 0, 0.25, 0.5]
 		for s in steps:
 			weapon.fire(base.rotated(s))
-

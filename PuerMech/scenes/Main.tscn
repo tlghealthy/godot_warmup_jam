@@ -1,13 +1,14 @@
-[gd_scene load_steps=19 format=3 uid="uid://cyxpqx6bf0yhy"]
+[gd_scene load_steps=20 format=3 uid="uid://cyxpqx6bf0yhy"]
 
-[ext_resource type="Script" uid="uid://c3k7jtgcw0nht" path="res://scenes/main.gd" id="1_rarhs"]
+[ext_resource type="Script" uid="uid://hsar3e4uyjik" path="res://scenes/main.gd" id="1_rarhs"]
 [ext_resource type="PackedScene" uid="uid://crb38507yjywg" path="res://scenes/Mech.tscn" id="4_rarhs"]
-[ext_resource type="Texture2D" uid="uid://d2xyplrtiu6c3" path="res://art/tiles.png" id="5_c01mt"]
-[ext_resource type="Texture2D" uid="uid://cwqvbbip1edih" path="res://art/darkstonetile.png" id="5_q8u5g"]
-[ext_resource type="Script" uid="uid://cmlnollofhj00" path="res://scenes/mech.gd" id="5_vcsgt"]
-[ext_resource type="Script" uid="uid://1ro7mato5hd" path="res://scenes/room_extent.gd" id="6_c01mt"]
-[ext_resource type="Script" uid="uid://cdru485ps2p1j" path="res://scenes/exit_to_room_2.gd" id="6_jlsqs"]
-[ext_resource type="Script" uid="uid://dgacx878rl0yh" path="res://scenes/screen_camera.gd" id="7_nxtc6"]
+[ext_resource type="Texture2D" uid="uid://bduvhdp8x0iqc" path="res://art/tiles.png" id="5_c01mt"]
+[ext_resource type="Texture2D" uid="uid://d32tghr0v6nla" path="res://art/darkstonetile.png" id="5_q8u5g"]
+[ext_resource type="Script" uid="uid://dgtfek3dqw7qn" path="res://scenes/mech.gd" id="5_vcsgt"]
+[ext_resource type="Script" uid="uid://ddk3xb56wyh63" path="res://scenes/room_extent.gd" id="6_c01mt"]
+[ext_resource type="Script" uid="uid://b6rnqiqdvxgxt" path="res://scenes/exit_to_room_2.gd" id="6_jlsqs"]
+[ext_resource type="Script" uid="uid://dm1bqs872xsis" path="res://scenes/screen_camera.gd" id="7_nxtc6"]
+[ext_resource type="PackedScene" uid="uid://pmomqpocee4y" path="res://scenes/player2.tscn" id="9_q8u5g"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jlsqs"]
 radius = 118.0
@@ -225,6 +226,9 @@ text = "CameraType Placeholder"
 [node name="ScreenCamera" type="Camera2D" parent="."]
 position = Vector2(960, 540)
 script = ExtResource("7_nxtc6")
+
+[node name="Player2" parent="." instance=ExtResource("9_q8u5g")]
+position = Vector2(1136, 150)
 
 [connection signal="body_entered" from="Room1/ExitToRoom2" to="." method="_on_exit_to_room_2_body_entered"]
 [connection signal="body_entered" from="Room1/ExitToRoom2" to="Room1/ExitToRoom2" method="_on_body_entered"]
